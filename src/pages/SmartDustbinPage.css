@@ -65,6 +65,7 @@
     font-weight: bold;
     color: #2563eb;
 }
+
 .report-button {
     background-color: #007bff;
     color: white;
@@ -74,9 +75,65 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .report-button:hover {
+}
+
+.report-button:hover {
     background-color: #0056b3;
-  }
-  
+}
+
+/* Updated CSS for single-row layout */
+.add-dustbin-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.add-dustbin-section h2 {
+    margin-right: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.add-dustbin-section input {
+    width: 20%;
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.add-dustbin-section input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.add-dustbin-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.add-dustbin-button:hover {
+    background-color: #0056b3;
+}
+
+.add-dustbin-button svg {
+    margin-right: 8px;
+}
