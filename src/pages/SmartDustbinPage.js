@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SmartDustbinPage.css'; // Import the CSS file
-import { Trash } from 'lucide-react'; // Icon for notifications
+import { Trash, Plus } from 'lucide-react'; // Icons for notifications and adding dustbins
 import axios from 'axios'; // For API requests
 
 const SmartDustbinPage = () => {
-    // Static array for notifications
-    const notifications = [
-        { id: 1, location: 'TVM', bValue: '70%', nbValue: '20%' },
-        { id: 2, location: 'Kowdiar', bValue: '71%', nbValue: '21%' },
-        { id: 3, location: 'SS Kovil Road', bValue: '72%', nbValue: '22%' },
-        { id: 4, location: 'Vazhuthacaud', bValue: '73%', nbValue: '23%' },
-        { id: 5, location: 'Nalanchira', bValue: '74%', nbValue: '24%' },
-        { id: 6, location: 'Nedumangad', bValue: '75%', nbValue: '25%' },
-        { id: 7, location: 'Parassala', bValue: '76%', nbValue: '26%' },
-        { id: 8, location: 'Inchivila', bValue: '77%', nbValue: '27%' },
-    ];
+    const [notifications, setNotifications] = useState([]);
+    const [newDustbin, setNewDustbin] = useState({ location: '', bValue: '', nbValue: '' });
+
+    // Function to fetch dustbin data from backend
+    const fetchDustbinData = async () => {
+        try {
+            const response = await axios.get('http://localhost:5050/api/dustbins');
+            setNotifications(response.data);
+        } catch (error) {
+            console.error('Error fetching dustbin data:', error);
+        }
+    };
+
+    // Auto-refresh every 5 seconds
+    useEffect(() => {
+        fetchDustbinData();
+        const interval = setInterval(fetchDustbinData, 5000);
+        return () => clearInterval(interval);
+    }, []);
 
     // Function to handle report button click
     const handleReport = async (notification) => {
@@ -35,14 +43,52 @@ const SmartDustbinPage = () => {
                 `NB Value: ${notification.nbValue}`
             );
         } catch (error) {
-            console.error("Error fetching report:", error.response || error);
-            alert("Failed to fetch report from server.");
+            console.error('Error sending report:', error.response || error);
+            alert('Failed to send report to the server.');
+        }
+    };
+
+    // Function to handle adding a new dustbin
+    const handleAddDustbin = async () => {
+        try {
+            const response = await axios.post('http://localhost:5050/api/add-dustbin', newDustbin);
+            alert(`Dustbin added successfully! ID: ${response.data.dustbin.id}`);
+            setNewDustbin({ location: '', bValue: '', nbValue: '' }); // Reset input fields
+            fetchDustbinData(); // Refresh the dustbin list
+        } catch (error) {
+            console.error('Error adding dustbin:', error);
+            alert('Failed to add dustbin.');
         }
     };
 
     return (
         <div className="smart-dustbin-page">
             <h1>Smart Dustbin Notifications</h1>
+            <div className="add-dustbin-section">
+                <h2>Add New Dustbin</h2>
+                <input
+                    type="text"
+                    placeholder="Location"
+                    value={newDustbin.location}
+                    onChange={(e) => setNewDustbin({ ...newDustbin, location: e.target.value })}
+                />
+                <input
+                    type="number"
+                    placeholder="B Value"
+                    value={newDustbin.bValue}
+                    onChange={(e) => setNewDustbin({ ...newDustbin, bValue: e.target.value })}
+                />
+                <input
+                    type="number"
+                    placeholder="NB Value"
+                    value={newDustbin.nbValue}
+                    onChange={(e) => setNewDustbin({ ...newDustbin, nbValue: e.target.value })}
+                />
+                <button onClick={handleAddDustbin} className="add-dustbin-button">
+                    <Plus size={20} /> Add Dustbin
+                </button>
+            </div>
+
             <div className="notification-grid">
                 {notifications.map((notification) => (
                     <div key={notification.id} className="notification-bar">
