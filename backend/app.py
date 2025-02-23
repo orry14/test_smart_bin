@@ -73,6 +73,25 @@ def get_dustbins():
     serialized_dustbins = [serialize_document(dustbin) for dustbin in dustbins]
     return jsonify(serialized_dustbins), 200
 
+# Endpoint to reset dustbin values to zero
+@app.route('/api/reset-dustbin', methods=['POST'])
+def reset_dustbin():
+    data = request.json
+    dustbin_id = data.get('id')
+    
+    if not dustbin_id:
+        return jsonify({"message": "Dustbin ID is required!"}), 400
+    
+    result = dustbins_collection.update_one(
+        {"id": dustbin_id},
+        {"$set": {"bValue": 0, "nbValue": 0}}
+    )
+    
+    if result.matched_count == 0:
+        return jsonify({"message": "Dustbin not found!"}), 404
+
+    return jsonify({"message": "Dustbin values reset successfully!"}), 200
+
 # Endpoint to display full content in DB
 @app.route('/api/db-content', methods=['GET'])
 def get_db_content():
