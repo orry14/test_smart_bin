@@ -12,21 +12,6 @@
     color: #333;
 }
 
-.notification-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.notification-bar {
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 .notification-icon {
     background-color: #e0f2fe;
     padding: 0.5rem;
@@ -38,7 +23,10 @@
 }
 
 .notification-content {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .notification-heading {
@@ -66,21 +54,6 @@
     color: #2563eb;
 }
 
-.report-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.report-button:hover {
-    background-color: #0056b3;
-}
-
 /* Updated CSS for single-row layout */
 .add-dustbin-section {
     background-color: #f9f9f9;
@@ -99,6 +72,36 @@
     margin-right: 20px;
     font-size: 24px;
     color: #333;
+}
+
+.notification-bar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    width: 100%;
+    /* Increased the width here */
+    margin: 1rem 0;
+    /* Added margin to create space between the notification boxes */
+}
+
+.notification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
+    /* Increased gap to add space between notification boxes */
+    justify-items: center;
+    /* Centers the grid items */
+}
+
+.notification-buttons {
+    display: flex;
+    gap: 0.2rem;
+    justify-content: flex-start;
+    /* Align buttons to the left */
 }
 
 .add-dustbin-section input {
@@ -135,5 +138,39 @@
 }
 
 .add-dustbin-button svg {
+    margin-right: 8px;
+}
+
+/* Buttons Styling for Same Row */
+.report-button,
+.delete-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #FF4C4C;
+}
+
+.delete-button:hover {
+    background-color: #e03e3e;
+}
+
+.delete-button svg,
+.report-button svg {
     margin-right: 8px;
 }

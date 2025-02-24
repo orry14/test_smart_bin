@@ -72,8 +72,6 @@ def get_dustbins():
     dustbins = list(dustbins_collection.find({}))
     serialized_dustbins = [serialize_document(dustbin) for dustbin in dustbins]
     return jsonify(serialized_dustbins), 200
-
-# Endpoint to reset dustbin values to zero
 @app.route('/api/reset-dustbin', methods=['POST'])
 def reset_dustbin():
     data = request.json
@@ -82,6 +80,7 @@ def reset_dustbin():
     if not dustbin_id:
         return jsonify({"message": "Dustbin ID is required!"}), 400
     
+    # Reset the dustbin values to 0
     result = dustbins_collection.update_one(
         {"id": dustbin_id},
         {"$set": {"bValue": 0, "nbValue": 0}}
@@ -89,8 +88,11 @@ def reset_dustbin():
     
     if result.matched_count == 0:
         return jsonify({"message": "Dustbin not found!"}), 404
-
-    return jsonify({"message": "Dustbin values reset successfully!"}), 200
+    
+    # Delete the corresponding report from the reports collection
+    reports_collection.delete_many({"id": dustbin_id})
+    
+    return jsonify({"message": "Dustbin values reset and corresponding report deleted successfully!"}), 200
 
 # Endpoint to display full content in DB
 @app.route('/api/db-content', methods=['GET'])
@@ -100,6 +102,15 @@ def get_db_content():
     serialized_reports = [serialize_document(report) for report in reports]
     serialized_dustbins = [serialize_document(dustbin) for dustbin in dustbins]
     return jsonify({"reports": serialized_reports, "dustbins": serialized_dustbins}), 200
+# Endpoint to delete a dustbin
+@app.route('/api/dustbin/<int:id>', methods=['DELETE'])
+def delete_dustbin(id):
+    result = dustbins_collection.delete_one({'id': id})
+    if result.deleted_count == 0:
+        return jsonify({"message": "Dustbin not found!"}), 404
+    return jsonify({"message": "Dustbin deleted successfully!"}), 200
+
 
 if __name__ == '__main__':
-    app.run(port=5050, debug=True)
+    app.run(host='0.0.0.0', port=5050)
+
