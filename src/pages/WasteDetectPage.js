@@ -28,6 +28,25 @@ const WasteDetectPage = () => {
     setFilteredScreenshots(filtered);
   };
 
+  // Delete Screenshot
+  const handleDelete = (screenshot) => {
+    const filename = screenshot.split('/').pop(); // Extract filename from path
+    fetch(`http://10.10.155.173:5050/api/screenshots/${filename}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Remove the deleted screenshot from state
+          const updatedScreenshots = screenshots.filter((s) => s !== screenshot);
+          setScreenshots(updatedScreenshots);
+          setFilteredScreenshots(updatedScreenshots);
+        } else {
+          console.error('Failed to delete screenshot');
+        }
+      })
+      .catch((error) => console.error('Error deleting screenshot:', error));
+  };
+
   return (
     <div className="waste-detect-page">
       <h1 className="title">Detected Litter Screenshots</h1>
@@ -41,16 +60,18 @@ const WasteDetectPage = () => {
         className="search-bar"
       />
 
-      {/* Display Screenshots */}
+      {/* Display Screenshots with Delete Button */}
       <div className="image-grid">
         {filteredScreenshots.map((screenshot, index) => (
-          <img
-            key={index}
-            src={`http://10.10.155.173:5050${screenshot}`}
-            alt={`Screenshot ${index + 1}`}
-            className="image-thumbnail"
-            onClick={() => setEnlargedImage(`http://10.10.155.173:5050${screenshot}`)}
-          />
+          <div key={index} className="image-wrapper">
+            <img
+              src={`http://10.10.155.173:5050${screenshot}`}
+              alt={`Screenshot ${index + 1}`}
+              className="image-thumbnail"
+              onClick={() => setEnlargedImage(`http://10.10.155.173:5050${screenshot}`)}
+            />
+            <button className="delete-button" onClick={() => handleDelete(screenshot)}>Delete</button>
+          </div>
         ))}
       </div>
 

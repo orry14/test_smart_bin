@@ -141,6 +141,15 @@ def delete_dustbin(dustbin_id):
 def serve_screenshot(filename):
     return send_from_directory(screenshot_folder, filename)
 
+@app.route('/api/screenshots/<filename>', methods=['DELETE'])
+def delete_screenshot(filename):
+    file_path = os.path.join(screenshot_folder, filename)
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        return jsonify({"message": "Screenshot deleted successfully"}), 200
+    else:
+        return jsonify({"message": "Screenshot not found"}), 404
+
 # MongoDB operations for reports and dustbins
 @app.route('/api/report', methods=['POST'])
 def receive_report():
