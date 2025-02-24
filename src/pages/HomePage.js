@@ -4,10 +4,14 @@ import './HomePage.css'; // Import CSS for HomePage styling
 const HomePage = () => {
   return (
     <div className="home-page">
-      <video className="home-video" controls autoPlay loop muted>
-        <source src="/video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <h1 className="title">Live CCTV Feed - Litter Detection</h1>
+      <div className="video-container">
+        <img
+          src="http://10.10.155.173:5050/video_feed"
+          alt="Live CCTV Feed"
+          className="live-video"
+        />
+      </div>
     </div>
   );
 };
