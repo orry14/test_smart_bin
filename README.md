@@ -1,4 +1,3 @@
-```markdown
 # ♻️ Zero-Waste Smart Management System
 
 ## 🌐 Project Overview
@@ -83,5 +82,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📧 Contact
 For queries, contact us at [krishnaprasadsm63@gmail.com].
-
-```
