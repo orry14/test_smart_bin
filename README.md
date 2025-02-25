@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+```markdown
+# ♻️ Zero-Waste Smart Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🌐 Project Overview
+This project is an AI-powered smart waste management system designed to promote responsible waste disposal and enhance urban sanitation. It integrates litter detection, smart dustbins, and automated waste processing to optimize waste collection and promote sustainability.
 
-## Available Scripts
+## 🚀 Features
+- 🎥 **AI-Powered Litter Detection:** Detects littering in real-time using CCTV and facial recognition.  
+- 📲 **Aadhaar-Linked Penalty System:** Issues penalties automatically by identifying offenders through Aadhaar data.  
+- 🗑️ **Smart Waste Segregation:** Automatically classifies waste as biodegradable or non-biodegradable using computer vision.  
+- 📡 **Real-Time Monitoring:** Tracks dustbin fill levels with ultrasonic sensors and sends alerts.  
+- 🔄 **Automated Waste Processing:** Converts biodegradable waste into methane and organic fertilizers.  
+- 🧲 **Magnetic Sorting System:** Separates recyclable non-biodegradable materials.  
 
-In the project directory, you can run:
+## 🏗️ Tech Stack
+- **Frontend:** React.js, Tailwind CSS  
+- **Backend:** Flask (Python)  
+- **Machine Learning Libraries:** TensorFlow, PyTorch, OpenCV, NumPy, Pandas  
+- **Database:** SQLite / MySQL (based on project requirements)  
+- **Other Tools:** Ultrasonic sensors, CCTV surveillance, Magnetic conveyor systems  
 
-### `npm start`
+## ⚙️ Installation Guide
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- Node.js and npm (for React)
+- Python 3.x and pip (for Flask)
+- Virtual environment (recommended for Python)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend Setup (Flask)
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd backend
+   ```
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the Flask server:
+   ```bash
+   python app.py
+   ```
 
-### `npm test`
+### Frontend Setup (React)
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install React dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📱 Usage Instructions
+1. Launch both the backend (Flask) and frontend (React) servers.  
+2. Access the web application at `http://localhost:3000/`.  
+3. Use the **Waste Throwing Detect** page for real-time litter detection.  
+4. Monitor dustbin status on the **Smart Dustbin** page.  
+5. View waste processing updates on the **Automated Recycling** page.  
 
-### `npm run build`
+## 📊 System Workflow
+1. Detects littering incidents via CCTV and issues penalties automatically.  
+2. Smart dustbins classify waste and monitor fill levels.  
+3. Real-time alerts are sent to municipal cleaners when bins are full.  
+4. Waste is processed for energy generation and recycling.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🤝 Contributors
+- Krishna Prasad
+- Sudhin Suresh
+- Aasish S
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📜 License
+This project is licensed under the [MIT License](LICENSE).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📧 Contact
+For queries, contact us at [krishnaprasadsm63@gmail.com].
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
