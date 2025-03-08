@@ -10,7 +10,7 @@ const SmartDustbinPage = () => {
     // Function to fetch dustbin data from backend
     const fetchDustbinData = async () => {
         try {
-            const response = await axios.get('http://10.10.155.173:5050/api/dustbins');
+            const response = await axios.get('http://127.0.0.1:5050/api/dustbins');
             setNotifications(response.data);
         } catch (error) {
             console.error('Error fetching dustbin data:', error);
@@ -27,7 +27,7 @@ const SmartDustbinPage = () => {
     // Function to handle report button click
     const handleReport = async (notification) => {
         try {
-            const response = await axios.post('http://10.10.155.173:5050/api/report', {
+            const response = await axios.post('http://127.0.0.1:5050/api/report', {
                 id: notification.id,
                 location: notification.location,
                 bValue: notification.bValue,
@@ -51,7 +51,7 @@ const SmartDustbinPage = () => {
     // Function to handle adding a new dustbin
     const handleAddDustbin = async () => {
         try {
-            const response = await axios.post('http://10.10.155.173:5050/api/add-dustbin', newDustbin);
+            const response = await axios.post('http://127.0.0.1:5050/api/add-dustbin', newDustbin);
             alert(`Dustbin added successfully! ID: ${response.data.dustbin.id}`);
             setNewDustbin({ location: '', bValue: '', nbValue: '' }); // Reset input fields
             fetchDustbinData(); // Refresh the dustbin list
@@ -64,7 +64,7 @@ const SmartDustbinPage = () => {
     // Function to handle deleting a dustbin
     const handleDeleteDustbin = async (id) => {
         try {
-            const response = await axios.delete(`http://10.10.155.173:5050/api/dustbin/${id}`);
+            const response = await axios.delete(`http://127.0.0.1:5050/api/dustbin/${id}`);
             alert(response.data.message);
             fetchDustbinData(); // Refresh the dustbin list after deletion
         } catch (error) {
